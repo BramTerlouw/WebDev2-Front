@@ -11,7 +11,11 @@
       </select>
 
       <div id="row" class="row">
-        <product-grid-item></product-grid-item>
+        <product-grid-item 
+          v-for="product in products" 
+          :key="product.product_ID" 
+          :product="product">
+        </product-grid-item>
       </div>
   </div>
 
@@ -19,9 +23,23 @@
 
 <script>
 import ProductGridItem from './ProductGridItem.vue';
-export default {
-  components: { ProductGridItem },
+import axios from 'axios';
 
+export default {
+  name: "ProductGrid",
+  components: { ProductGridItem },
+  data() {
+    return {
+      products: [],
+    };
+  },
+  mounted() {
+      axios.get('http://localhost/products')
+      .then((res) => {
+        this.products = res.data;
+      })
+      .catch(error => console.log(error));
+  },
 }
 </script>
 
