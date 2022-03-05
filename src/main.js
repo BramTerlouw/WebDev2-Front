@@ -4,10 +4,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import Homepage from './components/Homepage.vue';
 import ProductGrid from './components/products/ProductGrid.vue';
+import EditProduct from './components/products/editProduct.vue';
 
 const routes = [
     { path: '/', component: Homepage},
     { path: '/products', component: ProductGrid},
+    { path: '/editProduct/:id', component: EditProduct},
 ];
 
 const router = createRouter({
