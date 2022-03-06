@@ -120,6 +120,7 @@ export default {
             .post('http://localhost/stocks', this.stock)
             .then((res) => console.log(res))
             .catch((error) => console.log(error));
+            this.$router.push("/products");
         })
         .catch((error) => console.log(error));
     },

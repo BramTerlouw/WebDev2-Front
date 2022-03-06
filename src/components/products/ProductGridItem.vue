@@ -26,7 +26,7 @@
               role="button"
               >Edit</router-link
             >
-            <button type="button" @click="this.delete()" class="btn btn-danger">Delete</button>
+            <button type="button" @click="$emit('deleteProduct', product)" class="btn btn-danger">Delete</button>
           </div>
           <button type="button" class="btn btn-secondary">Add to cart</button>
         </div>
@@ -36,24 +36,10 @@
 </template>
 
 <script>
-// import axios from 'axios';
 export default {
   name: "ProductGridItem",
   props: {
     product: Object,
-  },
-  methods: {
-    delete() {
-      if (confirm("Do you really want to delete this " + this.product.category_Name + "?")) {
-        // axios.delete('http://localhost/products/' + product.product_ID)
-        //   .then((res) => {
-        //     console.log(res);
-        //   })
-        //   .catch((error) => {
-        //     console.log(error);
-        //   });
-      }
-    },
   },
 };
 </script>

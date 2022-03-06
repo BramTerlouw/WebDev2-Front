@@ -11,7 +11,8 @@
         <product-grid-item 
           v-for="product in products" 
           :key="product.product_ID" 
-          :product="product">
+          :product="product"
+          @deleteProduct="deleteProduct">
         </product-grid-item>
       </div>
   </div>
@@ -29,6 +30,19 @@ export default {
     return {
       products: [],
     };
+  },
+  methods: {
+    deleteProduct(product) {
+      if (confirm("Do you really want to delete this " + product.category_Name + "?")) {
+        axios.delete('http://localhost/products/' + product.product_ID)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
   },
   mounted() {
       axios.get('http://localhost/products')
