@@ -13,6 +13,7 @@
               class="form-control"
               id="productName"
               placeholder="Enter product name..."
+              v-model="product.name"
             />
           </div>
 
@@ -23,12 +24,13 @@
               class="form-control"
               id="productName"
               placeholder="Enter product price..."
+              v-model="product.price"
             />
           </div>
 
           <div class="form-group">
             <label for="productCat">Category:</label>
-            <select class="form-control" id="productCat">
+            <select class="form-control" id="productCat" v-model="product.category_ID">
                 <option
                 v-for="category in categories"
                 :key="category.id"
@@ -46,6 +48,7 @@
               class="form-control"
               id="productName"
              placeholder="Enter image url..."
+             v-model="product.image"
             />
           </div>
 
@@ -56,6 +59,7 @@
               class="form-control"
               id="productName"
               placeholder="Enter stock amount..."
+              v-model="this.stock.amount"
             />
           </div>
 
@@ -67,7 +71,8 @@
             </button>
             <button
                 type="button"
-                class="btn btn-success">Add
+                class="btn btn-success"
+                @click="this.add()">Add
             </button>
           </div>
         </form>
@@ -83,6 +88,16 @@ export default {
     data() {
         return {
             categories: [],
+            product: {
+              name: "",
+              price: 0,
+              category_ID: 1,
+              image: "",
+            },
+            stock: {
+              product_ID: 0,
+              amount: 0,
+            }
         }
     },
     mounted() {
@@ -93,6 +108,22 @@ export default {
       })
       .catch((error) => console.log(error));
   },
+  methods: {
+    add() {
+      axios
+        .post('http://localhost/products', this.product)
+        .then((res) => {
+          console.log(res);
+          this.stock.product_ID = res.data['product_ID'];
+          
+          axios
+            .post('http://localhost/stocks', this.stock)
+            .then((res) => console.log(res))
+            .catch((error) => console.log(error));
+        })
+        .catch((error) => console.log(error));
+    },
+  }
 
 }
 </script>
