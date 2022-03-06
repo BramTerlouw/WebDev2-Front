@@ -15,8 +15,9 @@
           @deleteProduct="deleteProduct">
         </product-grid-item>
       </div>
+      <button @click="back(this.limit)">Back</button>
+      <button @click="next(this.limit)">Next</button>
   </div>
-
 </template>
 
 <script>
@@ -29,6 +30,8 @@ export default {
   data() {
     return {
       products: [],
+      offset: 0,
+      limit: 3,
     };
   },
   methods: {
@@ -42,14 +45,31 @@ export default {
             console.log(error);
           });
       }
-    }
-  },
-  mounted() {
-      axios.get('http://localhost/products')
+    },
+    fetch() {
+      axios.get('http://localhost/products?offset=' + this.offset + '&limit=' + this.limit)
       .then((res) => {
         this.products = res.data;
+        if (this.products.length == 0) {
+          this.back(this.limit);
+          this.fetch();
+        }
       })
       .catch(error => console.log(error));
+    },
+    next(increase) {
+        this.offset += increase;
+        this.fetch();
+      },
+    back(decrease) {
+      if (this.offset - decrease >= 0) {
+        this.offset -= decrease;
+        this.fetch();
+      }
+    },
+  },
+  mounted() {
+      this.fetch();
   },
 }
 </script>
