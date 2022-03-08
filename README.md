@@ -1,4 +1,7 @@
 # end_assignment_front
+To do:
+- Implement state management
+- Implement JWT token
 
 ## Project setup
 ```

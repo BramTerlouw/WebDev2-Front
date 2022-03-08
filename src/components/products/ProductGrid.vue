@@ -49,11 +49,13 @@ export default {
     fetch() {
       axios.get('http://localhost/products?offset=' + this.offset + '&limit=' + this.limit)
       .then((res) => {
-        this.products = res.data;
-        if (this.products.length == 0) {
+        var data = res.data;
+        if (data.length == 0) {
           this.back(this.limit);
           this.fetch();
+          return;
         }
+        this.products = data;
       })
       .catch(error => console.log(error));
     },
