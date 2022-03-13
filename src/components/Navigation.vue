@@ -28,7 +28,7 @@
 
         <!-- when logged in, show logout butten and reverse -->
         <li class="nav-item">
-          <router-link to="/" class="nav-link">Login</router-link>
+          <router-link to="/login" class="nav-link">Login</router-link>
         </li>
       </ul>
     </div>

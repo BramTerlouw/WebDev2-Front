@@ -15,14 +15,16 @@
           @deleteProduct="deleteProduct">
         </product-grid-item>
       </div>
-      <button @click="back(this.limit)">Back</button>
-      <button @click="next(this.limit)">Next</button>
+      <div class="container d-flex justify-content-center">
+        <button class="btn btn-outline-primary m-1" @click="back(this.limit)">Back</button>
+        <button class="btn btn-outline-primary m-1" @click="next(this.limit)">Next</button>
+      </div>
   </div>
 </template>
 
 <script>
 import ProductGridItem from './ProductGridItem.vue';
-import axios from 'axios';
+import axios from '../../axios-auth';
 
 export default {
   name: "ProductGrid",
