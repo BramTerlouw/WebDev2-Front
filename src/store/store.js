@@ -7,6 +7,7 @@ const store = createStore({
         return {
             token: null,
             username: null,
+            role: 'User',
             logged_in: null
         }
     },
@@ -17,20 +18,25 @@ const store = createStore({
         saveToken(state, params) {
             state.token = params.token;
             state.username = params.username;
+            state.role = params.role;
             state.logged_in = true;
         }
     },
     actions: {
         logout() {
-            localStorage.clear();
-            this.state.token = null;
-            this.state.username = null;
-            // this.state.role = null;
-            this.state.logged_in = false;
+            return new Promise((resolve) => {
+                localStorage.clear();
+                this.state.token = null;
+                this.state.username = null;
+                this.state.role = 'User';
+                this.state.logged_in = false;
+                resolve();
+            })
         },
         autoLogin({commit}) {
             const token = localStorage.getItem('token');
             const username = localStorage.getItem('username');
+            const role = localStorage.getItem('role');
 
             if (!token)
                 return;
@@ -38,7 +44,8 @@ const store = createStore({
             axios.defaults.headers.common["Authorization"] = "Bearer " + token;
             commit('saveToken', {
                 username: username, 
-                token: token
+                token: token,
+                role: role
             })
             
         },
@@ -47,13 +54,16 @@ const store = createStore({
                 axios.post('/users/login', {username: params.username, password: params.password})
                 .then((result) => {
                     axios.defaults.headers.common["Authorization"] = "Bearer " + result.data.token;
-                    
+                    console.log(result.data.username);
+                    console.log(result.data.password);
                     localStorage.setItem('token', result.data.token);
                     localStorage.setItem('username', result.data.username);
+                    localStorage.setItem('role', result.data.role );
 
                     commit('saveToken', {
                         username: result.data.username, 
-                        token: result.data.token
+                        token: result.data.token,
+                        role: result.data.role
                     })
                     resolve();
                 }).catch((error) => {

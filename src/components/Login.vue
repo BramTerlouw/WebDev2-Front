@@ -61,6 +61,7 @@ export default {
                 username: this.username,
                 password: this.password
             }).then(() => {
+                console.log('login should be succesfull');
                 this.$router.push('/products')
             })
             .catch((error) => console.log(error))

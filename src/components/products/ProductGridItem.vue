@@ -21,12 +21,13 @@
         <div class="d-flex justify-content-between mb-2">
           <div>
             <router-link
+              v-if="$store.state.role == 'Admin'"
               v-bind:to="'/editProduct/' + product.product_ID"
               class="btn btn-warning m-1"
               role="button"
               >Edit</router-link
             >
-            <button type="button" @click="$emit('deleteProduct', product)" class="btn btn-danger">Delete</button>
+            <button v-if="$store.state.role == 'Admin'" type="button" @click="$emit('deleteProduct', product)" class="btn btn-danger">Delete</button>
           </div>
           <button type="button" class="btn btn-secondary">Add to cart</button>
         </div>

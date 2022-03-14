@@ -4,7 +4,7 @@
       <p>Here you can find any item you are looking for. Some items might not be in stock but they will be restocked as soon as possible.</p>
   
       <div class="m-1">
-        <router-link to="/addProduct">+ Add new product</router-link>
+        <router-link v-if="$store.state.role == 'Admin'" to="/addProduct">+ Add new product</router-link>
       </div>
 
       <div id="row" class="row">
