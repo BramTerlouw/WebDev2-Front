@@ -7,6 +7,7 @@ const store = createStore({
         return {
             token: null,
             username: null,
+            logged_in: null
         }
     },
     getters: {
@@ -16,9 +17,17 @@ const store = createStore({
         saveToken(state, params) {
             state.token = params.token;
             state.username = params.username;
+            state.logged_in = true;
         }
     },
     actions: {
+        logout() {
+            localStorage.clear();
+            this.state.token = null;
+            this.state.username = null;
+            // this.state.role = null;
+            this.state.logged_in = false;
+        },
         autoLogin({commit}) {
             const token = localStorage.getItem('token');
             const username = localStorage.getItem('username');

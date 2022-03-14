@@ -28,7 +28,9 @@
 
         <!-- when logged in, show logout butten and reverse -->
         <li class="nav-item">
-          <router-link to="/login" class="nav-link">Login</router-link>
+          <a v-if="$store.state.logged_in" class="nav-link" @click="this.logout()">Logout</a>
+          <router-link v-else to="/login" class="nav-link">Login</router-link>
+          <!-- <router-link v-else to="/login" class="nav-link">login</router-link> -->
         </li>
       </ul>
     </div>
@@ -39,7 +41,16 @@
 
 <script>
 export default {
-
+  name: 'Navigation',
+  methods: {
+    logout() {
+              this.$store.dispatch('logout')
+              .then(() => {
+                  this.$router.push('/')
+              })
+              .catch((error) => console.log(error))
+          },
+  }
 }
 </script>
 
