@@ -8,6 +8,9 @@ import EditProduct from './components/products/editProduct.vue';
 import AddProduct from './components/products/addProduct.vue';
 import Login from './components/Login.vue';
 
+// vuex
+import store from './store/store';
+
 const routes = [
     { path: '/', component: Homepage},
     { path: '/products', component: ProductGrid},
@@ -23,4 +26,9 @@ const router = createRouter({
 
 const app = createApp(App);
 app.use(router);
+
+// vuex
+app.use(store);
+
+
 app.mount('#app');
