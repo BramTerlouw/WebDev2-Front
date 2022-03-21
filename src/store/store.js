@@ -55,7 +55,6 @@ const store = createStore({
                 .then((result) => {
                     axios.defaults.headers.common["Authorization"] = "Bearer " + result.data.token;
                     console.log(result.data.username);
-                    console.log(result.data.password);
                     localStorage.setItem('token', result.data.token);
                     localStorage.setItem('username', result.data.username);
                     localStorage.setItem('role', result.data.role );

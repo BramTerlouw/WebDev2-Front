@@ -38,7 +38,6 @@
 </template>
 
 <script>
-// import axios from '../axios-auth';
 export default {
     name: "Login",
     data() {
@@ -48,14 +47,6 @@ export default {
         };
     },
     methods: {
-        // login() {
-        //     axios.post('/users/login', { username: this.username, password: this.password})
-        //     .then((res) => {
-        //         axios.defaults.headers.common["Authorization"] = "Bearer " + res.data.token;
-        //         this.$router.push("/");
-        //     })
-        //     .catch((error) => console.log(error));
-        // },
         login() {
             this.$store.dispatch('login', {
                 username: this.username,

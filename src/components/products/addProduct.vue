@@ -14,6 +14,7 @@
               id="productName"
               placeholder="Enter product name..."
               v-model="product.name"
+              required
             />
           </div>
 
@@ -25,6 +26,7 @@
               id="productName"
               placeholder="Enter product price..."
               v-model="product.price"
+              min="0"
             />
           </div>
 
@@ -105,6 +107,7 @@ export default {
       .get("http://localhost/categories/")
       .then((res) => {
         this.categories = res.data;
+        console.log(this.categories);
       })
       .catch((error) => console.log(error));
   },

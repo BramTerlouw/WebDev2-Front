@@ -7,7 +7,7 @@
         <router-link v-if="$store.state.role == 'Admin'" to="/addProduct">+ Add new product</router-link>
       </div>
 
-      <div id="row" class="row">
+      <div id="row" class="row" v-if="$store.state.token">
         <product-grid-item 
           v-for="product in products" 
           :key="product.product_ID" 
@@ -42,6 +42,7 @@ export default {
         axios.delete('http://localhost/products/' + product.product_ID)
           .then((res) => {
             console.log(res);
+            this.fetch();
           })
           .catch((error) => {
             console.log(error);
