@@ -1,7 +1,12 @@
 # end_assignment_front
-To do:
-- Implement state management
-- Implement JWT token
+Credentials:
+User:
+bram_user
+wachtwoord
+
+Admin:
+Mark_admin
+wachtwoord
 
 ## Project setup
 ```

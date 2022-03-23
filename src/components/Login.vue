@@ -43,8 +43,8 @@ export default {
     name: "Login",
     data() {
         return {
-            username: "bram_user",
-            password: "wachtwoord",
+            username: "",
+            password: "",
         };
     },
     methods: {
@@ -53,7 +53,6 @@ export default {
                 username: this.username,
                 password: this.password
             }).then(() => {
-                console.log('login should be succesfull');
                 this.$router.push('/products')
             })
             .catch((error) => console.log(error))
