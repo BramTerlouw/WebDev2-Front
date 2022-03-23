@@ -30,5 +30,4 @@ app.use(router);
 // vuex
 app.use(store);
 
-
 app.mount('#app');

@@ -1,4 +1,6 @@
 <template>
+
+  <!-- Column with card for product -->
   <div class="col-md-12 col-lg-4 mb-4 mb-lg-4">
     <div class="card">
       <img :src="product.image" class="card-img-top p-5" alt="product" />

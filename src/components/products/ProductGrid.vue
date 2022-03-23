@@ -3,10 +3,12 @@
       <h2 class="mt-3 mt-lg-5">Product catalogue:</h2>
       <p>Here you can find any item you are looking for. Some items might not be in stock but they will be restocked as soon as possible.</p>
   
+      <!-- when role in store eq admin, show link to add product -->
       <div class="m-1">
         <router-link v-if="$store.state.role == 'Admin'" to="/addProduct">+ Add new product</router-link>
       </div>
 
+      <!-- when allowed, show the product grid -->
       <div id="row" class="row" v-if="$store.state.token">
         <product-grid-item 
           v-for="product in products" 
@@ -15,6 +17,8 @@
           @deleteProduct="deleteProduct">
         </product-grid-item>
       </div>
+
+      <!-- buttons to go forward and backwards through the products -->
       <div class="container d-flex justify-content-center">
         <button class="btn btn-outline-primary m-1" @click="back(this.limit)">Back</button>
         <button class="btn btn-outline-primary m-1" @click="next(this.limit)">Next</button>

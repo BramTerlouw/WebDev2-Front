@@ -2,10 +2,14 @@
   <div class="container">
     <h2 class="mt-3 mt-lg-5">Add product:</h2>
   </div>
+  
+  <!-- container for add form -->
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-lg-4 mb-4 mb-lg-4">
         <form>
+          
+          <!-- labels and input fields -->
           <div class="form-group">
             <label for="productName">Product name:</label>
             <input
@@ -62,20 +66,25 @@
               id="productName"
               placeholder="Enter stock amount..."
               v-model="this.stock.amount"
+              min="0"
             />
           </div>
 
+          <!-- Cancel button -->
           <div class="mt-2">
             <button
                 type="button"
                 class="btn btn-danger m-1"
                 @click="this.$router.push('/products')">Cancel
             </button>
+
+            <!-- Submit button -->
             <button
                 type="button"
                 class="btn btn-success"
                 @click="this.add()">Add
             </button>
+
           </div>
         </form>
       </div>
@@ -128,7 +137,6 @@ export default {
         .catch((error) => console.log(error));
     },
   }
-
 }
 </script>
 

@@ -17,7 +17,7 @@
     <!-- Navbar items right -->
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ms-auto">
-        <!-- when logged in, show logout butten and reverse -->
+        <!-- when logged in, show logout butten and when not logged, show login -->
         <li class="nav-item">
           <a v-if="$store.state.logged_in" class="nav-link" @click="this.logout()">Logout</a>
           <router-link v-else to="/login" class="nav-link">Login</router-link>

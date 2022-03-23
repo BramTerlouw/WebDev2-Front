@@ -2,10 +2,14 @@
   <div class="container">
     <h2 class="mt-3 mt-lg-5">Edit product:</h2>
   </div>
+
+  <!-- container for edit form -->
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-lg-4 mb-4 mb-lg-4">
         <form>
+
+          <!-- labels and input fields -->
           <div class="form-group">
             <label for="productName">Product name:</label>
             <input
@@ -54,15 +58,20 @@
           </div>
 
           <div class="mt-2">
+            <!-- Cancel button -->
             <button
             type="button"
             class="btn btn-danger m-1"
-            @click="this.$router.push('/products')">Cancel</button>
+            @click="this.$router.push('/products')">Cancel
+            </button>
+
+            <!-- Submit button -->
             <button
               type="button"
               class="btn btn-success"
               @click="this.update()">Update</button>
           </div>
+
         </form>
       </div>
     </div>
